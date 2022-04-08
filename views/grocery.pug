@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  -var results = [{name:"onions",quantity:30,price:40},{name:"beans",quantity:20,price:40},{name:"Tomato",quantity:30,price:40},{name:"Brinjal",quantity:30,price:40},{name:"carrot",quantity:30,price:40}]
+  div(class="container-fluid")
+    div(class="row")
+      each item,index in results
+        div(class= "col-sm-2" , onclick=`buy(${index})`) #{item.name}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.quantity}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.price}
+
+  script.
+    function buy(itemNum){
+      alert(`You purchased item ${itemNum+1}`)
+    }
+
+  
