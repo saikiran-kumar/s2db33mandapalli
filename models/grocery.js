@@ -1,8 +1,3 @@
 const mongoose = require("mongoose")
-const costumeSchema = mongoose.Schema({
-costume_type: String,
-size: String,
-cost: Number
-})
-module.exports = mongoose.model("Costume",
-costumeSchema)
+const grocerySchema = mongoose.Schema({name: String,quantity: String,price: Number})
+module.exports = mongoose.model("grocery",grocerySchema)

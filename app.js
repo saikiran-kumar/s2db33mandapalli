@@ -6,18 +6,16 @@ var logger = require('morgan');
 var grocery = require("./models/grocery");
 
 
-const connectionString =
-process.env.MONGO_CON
+const connectionString =process.env.MONGO_CON;
 mongoose = require('mongoose');
-mongoose.connect(connectionString,
-{useNewUrlParser: true,
-useUnifiedTopology: true});
+mongoose.connect(connectionString,{useNewUrlParser: true,useUnifiedTopology: true});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var groceryRouter = require('./routes/grocery');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -36,6 +34,7 @@ app.use('/users', usersRouter);
 app.use('/grocery', groceryRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
