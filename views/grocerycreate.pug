@@ -1,0 +1,33 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  form(id='GroceryForm', action="/resource/resource/grocery", method="POST") 
+    div.form-group 
+        label.groceryAttr(for='name') Grocery Name 
+        input#name(type='text', name='name') 
+    div.form-group 
+        label.groceryAttr(for='quantity') Grocery Quantity
+        input#quantity(type='text', name='quantity') 
+    div.form-group 
+        label.groceryAttr(for='price') Grocery Price
+        input#price(type='number', name='price') 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['GroceryForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) 
+      }).then((resp) => { 
+        return resp.json();  
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    });

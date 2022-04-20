@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.groceryAttr {
+  background-color: yellowgreen;
+  width: 160px;
+ }
+ input {
+   background-color:antiquewhite;
+ }

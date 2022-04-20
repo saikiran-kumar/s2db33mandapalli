@@ -1,0 +1,23 @@
+extends layout
+block content
+ h1= title
+ if(toShow == null)
+    h2 No instance to show
+ else 
+ - let groceryid = toShow._id
+ - let name = toShow.name
+ - let quantity = toShow.quantity
+ - let price = toShow.price
+ div
+ div.row
+ div(class='groceryAttr mr-3') Grocery ID is:
+ div #{groceryid}
+ div.row
+ div(class='groceryAttr mr-3') Grocery name is:
+ div #{name}
+ div.row
+ div(class='groceryAttr mr-3') Grocery Quantity is:
+ div #{quantity}
+ div.row
+ div(class='groceryAttr mr-3') Grocery Price is:
+ div #{price}

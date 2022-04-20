@@ -1,0 +1,45 @@
+extends layout 
+ 
+block content 
+  h1= title 
+
+  if(toShow == null)
+    h2 No instance to update
+  else 
+  - let id = toShow._id
+  - let name = toShow.name
+  - let quantity = toShow.quantity
+  - let price = toShow.price
+
+  div.row(class='mb-2')
+   div.mr-1 ID is
+   div #{id}
+  - let actionid = "/resource/resource/grocery/" + id 
+  form(id='GroceryForm', action=actionid, method="PUT") 
+    div.form-group 
+        label.groceryAttr(for='name') Grocery Name 
+        input#name(type='text', name='name') 
+    div.form-group 
+        label.groceryAttr(for='quantity') Grocery Quantity
+        input#quantity(type='text', name='quantity') 
+    div.form-group 
+        label.groceryAttr(for='price') Grocery Price
+        input#price(type='number', name='price') 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['GroceryForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) 
+      }).then((resp) => { 
+        return resp.json();  
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    });

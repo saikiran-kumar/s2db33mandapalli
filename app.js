@@ -36,6 +36,37 @@ app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
 
+
+async function recreateDB(){
+  // Delete everything
+  await grocery.deleteMany();
+  let instance1 = new
+ grocery({name:"Onions", quantity:'large',price:25.4});
+  instance1.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("First object saved")
+  });
+  let instance2 = new
+ grocery({name:"brinjal", quantity:'large',price:45.4});
+  instance2.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("Second object saved")
+  });
+  let instance3 = new
+ grocery({name:"Carrot", quantity:'small',price:35.4});
+  instance3.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("Third object saved")
+  });
+  let instance4 = new
+ grocery({name:"Tomato", quantity:'small',price:55.4});
+  instance4.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("Fourth object saved")
+  });
+ }
+ let reseed = true;
+ if (reseed) { recreateDB();}
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -54,18 +85,7 @@ app.use(function(err, req, res, next) {
 
 // We can seed the collection if needed on
 //server start
-async function recreateDB(){
- // Delete everything
- await grocery.deleteMany();
- let instance1 = new
-grocery({name:"ghost", quantity:'large',price:25.4});
- instance1.save( function(err,doc) {
- if(err) return console.error(err);
- console.log("First object saved")
- });
-}
-let reseed = true;
-if (reseed) { recreateDB();}
+
 
 module.exports = app;
 
