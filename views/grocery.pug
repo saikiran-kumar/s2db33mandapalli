@@ -3,17 +3,17 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  -var results = [{name:"onions",quantity:30,price:40},{name:"beans",quantity:20,price:40},{name:"Tomato",quantity:30,price:40},{name:"Brinjal",quantity:30,price:40},{name:"carrot",quantity:30,price:40}]
+  -var results = [{name:"onions",quantity:30,price:40},{name:"beans",quantity:50,price:70},{name:"Tomato",quantity:16,price:7},{name:"Brinjal",quantity:33,price:9},{name:"carrot",quantity:3,price:6}]
   div(class="container-fluid")
-    div(class="row")
-      each item,index in results
-        div(class= "col-sm-2" , onclick=`buy(${index})`) #{item.name}
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.quantity}
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.price}
+    div(class="row m-1")
+     each item in results
+      - let destination = `dispatch(\"/grocery/update?id=626191988a7982bb29492e8c\")`
+      div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.quantity}) is #{item.price}
+       button.btn( class="btn-primary ml-1", onclick= destination) Update
 
   script.
-    function buy(itemNum){
-      alert(`You purchased item ${itemNum+1}`)
-    }
+   function dispatch(path){
+    window.location.href=path
+   }
 
   
