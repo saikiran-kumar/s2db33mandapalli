@@ -10,7 +10,7 @@ block content
     - let name = toShow.name 
     - let quantity = toShow.quantity
     - let price = toShow.price
-    - let actionid = "/resource/resource/grocery/" + id 
+    - let actionid = "/resource/grocery/" + id 
     script let actionid = "#{actionid}" 
     div 
       div.row 
@@ -32,7 +32,7 @@ block content
   script. 
     function cancel() { 
       // Go back to the home page for the costume collection 
-      window.location.href='/resource/resource/grocery' 
+      window.location.href='/resource/grocery' 
     } 
   script. 
     function deleteOnid() { 
@@ -44,7 +44,7 @@ block content
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
         alert("Delete succeded") 
-        window.location.href='/resource/resource/grocery' 
+        window.location.href='/resource/grocery' 
         // TODO handle body 
       }).catch((error) => { 
         // TODO handle error 

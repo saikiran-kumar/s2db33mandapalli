@@ -1,19 +1,21 @@
-extends layout
+extends layout 
 
 block content
-  h1= title
-  p Welcome to #{title}
-  -var results = [{name:"onions",quantity:30,price:40},{name:"beans",quantity:50,price:70},{name:"Tomato",quantity:16,price:7},{name:"Brinjal",quantity:33,price:9},{name:"carrot",quantity:3,price:6}]
-  div(class="container-fluid")
-    div(class="row m-1")
-     each item in results
-      - let destination = `dispatch(\"/grocery/update?id=626191988a7982bb29492e8c\")`
-      div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.quantity}) is #{item.price}
-       button.btn( class="btn-primary ml-1", onclick= destination) Update
-
-  script.
-   function dispatch(path){
-    window.location.href=path
-   }
-
-  
+    h1= title
+    -let items =results;
+    div(class="container-fluid") 
+      div(class="row m-1") 
+       - let destination1 = `dispatch(\"/grocery/create\")`
+       button.btn( class="btn-primary ml-1", onclick= destination1) Create
+       each item in items
+        - let destination = `dispatch(\"/grocery/update/?id=${item._id}\")`
+        - let destination2 = `dispatch(\"/grocery/detail/?id=${item._id}\")`
+        - let destination3 = `dispatch(\"/grocery/delete/?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.quantity}) is #{item.price} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= destination2) Detail
+          button.btn( class="btn-warning ml-1", onclick= destination3) Delete 
+    script. 
+      function dispatch(path){ 
+        window.location.href=path 
+      }
